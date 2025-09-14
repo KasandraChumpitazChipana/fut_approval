@@ -1,0 +1,9 @@
+server:
+  port: 8100
+
+spring:
+  application:
+    name: vg-ms-futApproval
+  data:
+    mongodb:
+      uri: mongodb+srv://huamantirado2006:1Cl61RtNEUNI2Pz0@cluster0.ahl0qgf.mongodb.net/PRS_proyect?retryWrites=true&w=majority&appName=Cluster0
