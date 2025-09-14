@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
-@RequestMapping("/fut/approvals")
+@RequestMapping("/api/v1/futapprovals")
 @RequiredArgsConstructor
 public class FutApprovalRest {
 

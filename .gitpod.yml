@@ -1,0 +1,12 @@
+# .gitpod.yml
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Instalar Java 17
+    init: |
+      curl -s "https://get.sdkman.io" | bash
+      source "$HOME/.sdkman/bin/sdkman-init.sh"
+      sdk install java 17.0.11-jbr
+      sdk default java 17.0.11-jbr
+      java -version
