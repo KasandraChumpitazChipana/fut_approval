@@ -15,19 +15,18 @@ import java.time.LocalDateTime;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/futapprovals")
+@CrossOrigin(origins = "*")   // 👈 Permitir todos los orígenes
 @RequiredArgsConstructor
 public class FutApprovalRest {
 
     private final IFutApprovalService service;
 
-    // Crear aprobación (POST /fut/requests)
     @PostMapping
     public Mono<ResponseEntity<FutApproval>> create(@RequestBody FutApproval approval) {
         return service.createApproval(approval)
                 .map(saved -> ResponseEntity.status(HttpStatus.CREATED).body(saved));
     }
 
-    // Obtener por ID
     @GetMapping("/{id}")
     public Mono<ResponseEntity<FutApproval>> getById(@PathVariable String id) {
         return service.getApprovalById(id)
@@ -35,13 +34,11 @@ public class FutApprovalRest {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    // Listar todas
     @GetMapping
     public Flux<FutApproval> getAll() {
         return service.getAllApprovals();
     }
 
-    // Actualizar revisión (PUT /fut/requests/{id}/review)
     @PutMapping("/{id}/review")
     public Mono<ResponseEntity<FutApproval>> review(@PathVariable String id, @RequestBody FutApproval approval) {
         approval.setReviewDate(LocalDateTime.now());
@@ -50,7 +47,6 @@ public class FutApprovalRest {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    // Registrar entrega (POST /fut/requests/{id}/deliver)
     @PostMapping("/{id}/deliver")
     public Mono<ResponseEntity<FutApproval>> deliver(@PathVariable String id, @RequestBody FutApproval approval) {
         approval.setDeliveredAt(LocalDateTime.now());
@@ -59,13 +55,11 @@ public class FutApprovalRest {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    // Buscar aprobaciones por enrollment (GET /fut/requests/by-enrollment/{studentEnrollmentId})
     @GetMapping("/by-enrollment/{futRequestId}")
     public Flux<FutApproval> getByEnrollment(@PathVariable String futRequestId) {
         return service.getByFutRequestId(futRequestId);
     }
 
-    // Eliminar aprobación
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Void>> delete(@PathVariable String id) {
         return service.deleteApproval(id)
