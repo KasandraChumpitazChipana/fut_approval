@@ -22,7 +22,7 @@ public class FutApproval {
     private String decision; // Approved, Rejected
     private String reviewComments;
     private Map<String, Object> generatedDocuments;
-    private String deliveryMethod; // Pickup, email, postal, digital_platform
+    private String deliveryMethod; // Pickup, email, postal, digital_platforms
     private String deliveryAddress;
     private LocalDateTime deliveredAt;
     private String deliveredBy;

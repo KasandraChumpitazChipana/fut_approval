@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/futapprovals")
-@CrossOrigin(origins = "*")   // 👈 Permitir todos los orígenes
+@CrossOrigin(origins = "*")   // 👈 Permitir todos los orígeness
 @RequiredArgsConstructor
 public class FutApprovalRest {
 
